@@ -200,7 +200,7 @@ window.addEventListener('keyup', function(event){
 canvas.addEventListener('mousedown', function(){
     mouse.clicked = true;
 });
-canvas.addEventListener('touchstart', function(){
+canvas.addEventListener('touchstart', function(event){
     const rect = canvas.getBoundingClientRect();
     if((event.clientX - rect.left) / (rect.right - rect.left) * canvas.width<canvas.width/2){
         left = true;

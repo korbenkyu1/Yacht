@@ -9,7 +9,7 @@ const mouse = {
     clicked: false
 }
 const keys = [];
-let up = false, down = false, left = false, right = false;
+let left = false, right = false;
 const fps = 60;
 let score = 0;
 let scrollSpeed = 5;
@@ -203,23 +203,15 @@ canvas.addEventListener('mousedown', function(){
 canvas.addEventListener('touchstart', function(){
     const rect = canvas.getBoundingClientRect();
     mouse.x = (event.clientX - rect.left) / (rect.right - rect.left) * canvas.width;
-    mouse.y = (event.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height;
     if(mouse.x<canvas.width/2){
         left = true;
     } else {
         right = true;
     }
-    if(mouse.y<canvas.height/2){
-        up = true;
-    } else {
-        down = true;
-    }
 });
 canvas.addEventListener('touchend', function(){
     left = false;
     right = false;
-    up = false;
-    down = false;
 });
 canvas,addEventListener('mousemove', function(event){
     const rect = canvas.getBoundingClientRect();

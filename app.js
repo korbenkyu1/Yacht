@@ -199,7 +199,10 @@ window.addEventListener('keyup', function(event){
 canvas.addEventListener('mousedown', function(){
     mouse.clicked = true;
 });
-canvas.addEventListener('mouseup', function(){
+canvas.addEventListener('touchstart', function(){
+    mouse.clicked = true;
+});
+canvas.addEventListener('touchend', function(){
     mouse.clicked = false;
 });
 canvas,addEventListener('mousemove', function(event){
@@ -207,5 +210,9 @@ canvas,addEventListener('mousemove', function(event){
     mouse.x = (event.clientX - rect.left) / (rect.right - rect.left) * canvas.width;
     mouse.y = (event.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height;
 });
-
+canvas,addEventListener('touchmove', function(event){
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = (event.clientX - rect.left) / (rect.right - rect.left) * canvas.width;
+    mouse.y = (event.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height;
+});
 animation = setInterval(run, 1000/fps);

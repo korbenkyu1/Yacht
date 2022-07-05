@@ -9,6 +9,7 @@ const mouse = {
     clicked: false
 }
 const keys = [];
+let up = false, down = false, left = false, right = false;
 const fps = 60;
 let score = 0;
 let scrollSpeed = 5;
@@ -99,12 +100,12 @@ function run() {
     timer++;
     score += scrollSpeed;
     // input
-    if(keys['KeyW']||keys['ArrowUp']||(mouse.clicked === true && mouse.y-player.y<-5)){ 
+    if(up||keys['KeyW']||keys['ArrowUp']||(mouse.clicked === true && mouse.y-player.y<-5)){ 
         player.y -= 5;
         if(player.y<0)
             player.y = 0;
     }
-    if(keys['KeyS']||keys['ArrowDown']||(mouse.clicked === true && mouse.y-player.y>5)){
+    if(down||keys['KeyS']||keys['ArrowDown']||(mouse.clicked === true && mouse.y-player.y>5)){
         player.y += 15;
         if(player.y+player.h>canvas.height)
             player.y = canvas.height-player.h;
@@ -114,7 +115,7 @@ function run() {
         });
     } 
 
-    if(keys['KeyA']||keys['ArrowLeft']||(mouse.clicked === true && mouse.x<player.x)){ 
+    if(left||keys['KeyA']||keys['ArrowLeft']||(mouse.clicked === true && mouse.x<player.x)){ 
         player.x -= 10;
         if(player.x+player.w<0)
             player.x += canvas.width;
@@ -123,7 +124,7 @@ function run() {
                 player.x = obstacle.x+obstacle.w;
         });
     }
-    if(keys['KeyD']||keys['ArrowRight']||(mouse.clicked === true && mouse.x>player.x)){
+    if(right||keys['KeyD']||keys['ArrowRight']||(mouse.clicked === true && mouse.x>player.x)){
         player.x += 10;
         if(player.x>canvas.width)
             player.x -= canvas.width;
@@ -200,17 +201,27 @@ canvas.addEventListener('mousedown', function(){
     mouse.clicked = true;
 });
 canvas.addEventListener('touchstart', function(){
-    mouse.clicked = true;
-});
-canvas.addEventListener('touchend', function(){
-    mouse.clicked = false;
-});
-canvas,addEventListener('mousemove', function(event){
     const rect = canvas.getBoundingClientRect();
     mouse.x = (event.clientX - rect.left) / (rect.right - rect.left) * canvas.width;
     mouse.y = (event.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height;
+    if(mouse.x<canvas.width/2){
+        left = true;
+    } else {
+        right = true;
+    }
+    if(mouse.y<canvas.height/2){
+        up = true;
+    } else {
+        down = true;
+    }
 });
-canvas,addEventListener('touchmove', function(event){
+canvas.addEventListener('touchend', function(){
+    left = false;
+    right = false;
+    up = false;
+    down = false;
+});
+canvas,addEventListener('mousemove', function(event){
     const rect = canvas.getBoundingClientRect();
     mouse.x = (event.clientX - rect.left) / (rect.right - rect.left) * canvas.width;
     mouse.y = (event.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height;

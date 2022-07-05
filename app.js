@@ -202,8 +202,7 @@ canvas.addEventListener('mousedown', function(){
 });
 canvas.addEventListener('touchstart', function(){
     const rect = canvas.getBoundingClientRect();
-    mouse.x = (event.clientX - rect.left) / (rect.right - rect.left) * canvas.width;
-    if(mouse.x<canvas.width/2){
+    if((event.clientX - rect.left) / (rect.right - rect.left) * canvas.width<canvas.width/2){
         left = true;
     } else {
         right = true;

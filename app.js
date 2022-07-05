@@ -100,12 +100,12 @@ function run() {
     timer++;
     score += scrollSpeed;
     // input
-    if(up||keys['KeyW']||keys['ArrowUp']||(mouse.clicked === true && mouse.y-player.y<-5)){ 
+    if(keys['KeyW']||keys['ArrowUp']||(mouse.clicked === true && mouse.y-player.y<-5)){ 
         player.y -= 5;
         if(player.y<0)
             player.y = 0;
     }
-    if(down||keys['KeyS']||keys['ArrowDown']||(mouse.clicked === true && mouse.y-player.y>5)){
+    if(keys['KeyS']||keys['ArrowDown']||(mouse.clicked === true && mouse.y-player.y>5)){
         player.y += 15;
         if(player.y+player.h>canvas.height)
             player.y = canvas.height-player.h;

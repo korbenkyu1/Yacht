@@ -209,6 +209,9 @@ canvas.addEventListener('touchstart', function(){
         right = true;
     }
 });
+canvas.addEventListener('mouseup', function(){
+    mouse.clicked = false;
+});
 canvas.addEventListener('touchend', function(){
     left = false;
     right = false;

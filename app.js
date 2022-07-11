@@ -189,6 +189,7 @@ function init(){
         obstacle3.y = -1600-Math.random()*100;
         obstacles.push(obstacle3);
     }
+    clouds.length = 0;
     for(let i=0; i<5; i++){
         clouds.push(new Cloud(Math.random()*(canvas.width-50), -250-Math.random()*800, Math.random()*50 +50, Math.random()*200 + 50));
         clouds.push(new Cloud(Math.random()*(canvas.width-50), -500-Math.random()*800, Math.random()*50 +50, Math.random()*200 + 50));
